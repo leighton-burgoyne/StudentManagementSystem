@@ -1,0 +1,159 @@
+﻿@page
+@model StudentManagementSystem.Pages.Students.IndexModel
+
+@{
+    ViewData["Title"] = "Students";
+}
+<head>
+    <!-- our project just needs Font Awesome Solid + Brands -->
+    <link href="/lib/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="/lib/fontawesome/css/brands.css" rel="stylesheet">
+    <link href="/lib/fontawesome/css/solid.css" rel="stylesheet">
+</head>
+
+<h1>All Students</h1>
+
+<p>
+    <a class="btn btn-success" asp-page="Create"><i class="fa fa-user-plus"></i> Enrol Student</a>
+    <a class="btn btn-warning" asp-page="Create"><i class="fa fa-chart-simple"></i> Statistics</a>
+</p>
+<p>
+    <input type="search" class="form-control" id="searchInput" onkeyup="search()" placeholder="Search for Student..." title="Search" />
+</p>
+<table class="table table-hover" id="studentTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Student[0].StudentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Student[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Student[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Student[0].DateOfBirth)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.Student[0].EnrolmentDate)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.Student[0].PersonalEmail)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.Student[0].MobileTelephoneNumber)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.Student[0].HomeTelephoneNumber)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.Student[0].Gender)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.Student[0].IsLookedAfterChild)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.Student[0].IsCareLeaver)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.Student[0].HasAdditionalNeeds)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.Student[0].AddressLine1)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.Student[0].AddressLine2)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.Student[0].AddressPostcode)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.Student[0].NiNumber)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Student)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth.Date)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.EnrolmentDate)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.PersonalEmail)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.MobileTelephoneNumber)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.HomeTelephoneNumber)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.IsLookedAfterChild)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.IsCareLeaver)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.HasAdditionalNeeds)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.AddressLine1)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.AddressLine2)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.AddressPostcode)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.NiNumber)
+            </td>*@
+                <td>
+                    <a class="btn btn-warning" asp-page="./Edit" asp-route-id="@item.StudentId"><i class="fa fa-user-pen"></i> Edit</a>
+                    <a class="btn btn-primary" asp-page="./Details" asp-route-id="@item.StudentId"><i class="fa fa-eye"></i> Details</a>
+                    <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.StudentId"><i class="fa fa-user-minus"></i> Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Search Functionality Referenced From: https://www.w3schools.com/howto/howto_js_filter_table.asp-->
+<script> 
+function search() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("searchInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("studentTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1]; // Currently set to Index 1 (First Name)
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>

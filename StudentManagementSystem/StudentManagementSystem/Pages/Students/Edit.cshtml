@@ -1,0 +1,110 @@
+﻿@page
+@using StudentManagementSystem.Models;
+@model StudentManagementSystem.Pages.Students.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>
+    @Model.Student.LastName, @Model.Student.FirstName (@Model.Student.StudentId)
+</h1>
+
+<div>
+    <h4>Edit Student Details</h4>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Student.StudentId" />
+            <div class="form-group">
+                <label asp-for="Student.FirstName" class="control-label"></label>
+                <input asp-for="Student.FirstName" class="form-control" />
+                <span asp-validation-for="Student.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Student.LastName" class="control-label"></label>
+                <input asp-for="Student.LastName" class="form-control" />
+                <span asp-validation-for="Student.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Student.DateOfBirth" class="control-label"></label>
+                <input asp-for="Student.DateOfBirth" type="date" class="form-control" />
+                <span asp-validation-for="Student.DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Student.PersonalEmail" class="control-label"></label>
+                <input asp-for="Student.PersonalEmail" class="form-control" />
+                <span asp-validation-for="Student.PersonalEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Student.MobileTelephoneNumber" class="control-label"></label>
+                <input asp-for="Student.MobileTelephoneNumber" class="form-control" />
+                <span asp-validation-for="Student.MobileTelephoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Student.HomeTelephoneNumber" class="control-label"></label>
+                <input asp-for="Student.HomeTelephoneNumber" class="form-control" />
+                <span asp-validation-for="Student.HomeTelephoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Student.StudentGender" class="control-label"></label>
+                <select asp-for="Student.StudentGender" class="form-control" asp-items="Html.GetEnumSelectList<Gender>()"></select>
+                <span asp-validation-for="Student.StudentGender" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Student.IsLookedAfterChild" /> @Html.DisplayNameFor(model => model.Student.IsLookedAfterChild)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Student.IsCareLeaver" /> @Html.DisplayNameFor(model => model.Student.IsCareLeaver)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Student.HasAdditionalNeeds" /> @Html.DisplayNameFor(model => model.Student.HasAdditionalNeeds)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Student.AddressLine1" class="control-label"></label>
+                <input asp-for="Student.AddressLine1" class="form-control" />
+                <span asp-validation-for="Student.AddressLine1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Student.AddressLine2" class="control-label"></label>
+                <input asp-for="Student.AddressLine2" class="form-control" />
+                <span asp-validation-for="Student.AddressLine2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Student.AddressPostcode" class="control-label"></label>
+                <input asp-for="Student.AddressPostcode" class="form-control" />
+                <span asp-validation-for="Student.AddressPostcode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Student.NiNumber" class="control-label"></label>
+                <input asp-for="Student.NiNumber" class="form-control" />
+                <span asp-validation-for="Student.NiNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Student.Notes" class="control-label"></label>
+                <textarea asp-for="Student.Notes" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Student.Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

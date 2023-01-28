@@ -1,0 +1,60 @@
+﻿@page
+@model StudentManagementSystem.Pages.Courses.IndexModel
+
+@{
+    ViewData["Title"] = "Courses";
+}
+<head>
+    <!-- our project just needs Font Awesome Solid + Brands -->
+    <link href="/lib/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="/lib/fontawesome/css/brands.css" rel="stylesheet">
+    <link href="/lib/fontawesome/css/solid.css" rel="stylesheet">
+</head>
+
+<h1>All Courses</h1>
+
+<p>
+    <a class="btn btn-success" asp-page="Create"><i class="fa fa-solid fa-plus"></i> New Course</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Course[0].Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course[0].Level)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course[0].ExamBoard)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Course) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Level)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExamBoard)
+            </td>
+            <td>
+                <a class="btn btn-warning" asp-page="./Edit" asp-route-id="@item.CourseId"><i class="fa fa-file-pen"></i> Edit</a>
+                <a class="btn btn-primary" asp-page="./Details" asp-route-id="@item.CourseId"><i class="fa fa-eye"></i> Details</a>
+                <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.CourseId"><i class="fa fa-trash"></i> Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

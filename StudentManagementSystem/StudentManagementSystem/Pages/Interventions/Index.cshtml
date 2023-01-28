@@ -1,0 +1,60 @@
+﻿@page
+@model StudentManagementSystem.Pages.Interventions.IndexModel
+
+@{
+    ViewData["Title"] = "Interventions";
+}
+<head>
+    <!-- our project just needs Font Awesome Solid + Brands -->
+    <link href="/lib/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="/lib/fontawesome/css/brands.css" rel="stylesheet">
+    <link href="/lib/fontawesome/css/solid.css" rel="stylesheet">
+</head>
+
+<h1>All Interventions</h1>
+
+<p>
+    <a class="btn btn-success" asp-page="Create"><i class="fa-regular fa-flag"></i> New Intervention</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Intervention[0].InterventionId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Intervention[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Intervention[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Intervention[0].Student)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Intervention) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterventionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student)
+            </td>
+            <td>
+                <a class="btn btn-warning" asp-page="./Edit" asp-route-id="@item.InterventionId"><i class="fa fa-pen"></i> Edit</a>
+                <a class="btn btn-primary" asp-page="./Details" asp-route-id="@item.InterventionId"><i class="fa fa-eye"></i> Details</a>
+                <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.InterventionId"><i class="fa fa-trash"></i> Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
